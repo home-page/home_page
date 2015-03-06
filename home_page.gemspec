@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = HomePage::VERSION
   s.authors     = ['Mathias Gawlista']
   s.email       = ['gawlista@gmail.com']
-  s.homepage    = 'http://murd.ch'
+  s.homepage    = 'http://Home-Page.Software'
   s.summary     = 'Gem for maintaining personal home pages with pluggable modules for special interests and API mashups.'
   s.description = 'Gem for maintaining personal home pages with pluggable modules for special interests and API mashups.'
   s.license     = 'MIT'
