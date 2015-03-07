@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    home_page (0.0.2)
+    home_page (0.0.3)
       activerecord-deprecated_finders (~> 1.0.3)
       devise (~> 3.4.1)
       friendly_id (~> 5.1.0)
