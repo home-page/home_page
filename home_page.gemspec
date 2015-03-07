@@ -17,10 +17,21 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'rails', '~> 4.2.0'
+  
+  # rails 3
+  s.add_dependency 'protected_attributes', '~> 1.0.5 '
+  s.add_dependency 'activerecord-deprecated_finders', '~> 1.0.3'
+  
   s.add_dependency 'therubyracer'#, :require => 'v8'
   s.add_dependency 'twitter-bootswatch-rails', '~> 3.3.2.0'
   s.add_dependency 'twitter-bootswatch-rails-fontawesome', '~> 4.3.0.0'
   s.add_dependency 'jquery-rails', '~> 4.0.3'
+  s.add_dependency 'devise', '~> 3.4.1'
+  s.add_dependency 'friendly_id', '~> 5.1.0'
+  s.add_dependency 'recaptcha', '~> 0.3.6'
+  s.add_dependency 'simple_form', '~> 3.1.0'
+  s.add_dependency 'simple-navigation', '~> 3.14.0'  
+  s.add_dependency 'simple-navigation-bootstrap', '~> 1.0.0'
   
   s.add_development_dependency 'mysql2'
 end

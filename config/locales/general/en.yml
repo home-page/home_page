@@ -1,0 +1,40 @@
+en:
+  general:  
+    site:
+      title: Home Page
+    
+    index:
+      title: Home
+    submit: Submit
+    new: New
+    edit: Edit
+    destroy: Destroy
+    actions: Actions
+    
+    form:
+      errors_count: '%{count} prohibited this object from being saved:'
+      successfully_created: Creation successful
+      successfully_updated: Update successful
+      destroyed: Resource destroyed successfully.
+      
+    questions:
+      are_you_sure: Are you sure?
+      
+    exceptions:
+      wrong_recaptcha: The captcha code which you typed in is wrong.
+      access_denied: Access denied
+      not_found: Resource not found.
+            
+  pages:
+    privacy_policy:
+      title: Privacy Police
+    terms_of_use:
+      title: Terms of Use
+    about_us:
+      title: About Us    
+  
+  authentication:
+    title: Authentication
+    sign_in: Sign in
+    sign_up: Sign up
+    sign_out: Sign out

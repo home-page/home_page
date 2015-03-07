@@ -1,5 +1,17 @@
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: ef28bf28140001745e6ec67ba0620864ef4b1350
+  specs:
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+
 PATH
-  remote: .
+  remote: /Users/gawlim/workspace/home_page/home_page
   specs:
     home_page (0.0.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -17,7 +29,8 @@ PATH
       twitter-bootswatch-rails-fontawesome (~> 4.3.0.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://gems.github.com/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -59,13 +72,6 @@ GEM
     bcrypt (3.1.10)
     builder (3.2.2)
     commonjs (0.2.7)
-    devise (3.4.1)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.4.0)
     friendly_id (5.1.0)
@@ -171,5 +177,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  devise!
   home_page!
   mysql2
