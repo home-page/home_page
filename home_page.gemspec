@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple-navigation-bootstrap', '~> 1.0.0'
   s.add_dependency 'auto_html', '~> 1.6.4'
   s.add_dependency 'redcarpet', '~> 3.2.2'
+  s.add_dependency 'will_paginate', '~> 3.0.7'
   
   s.add_development_dependency 'mysql2'
 end
