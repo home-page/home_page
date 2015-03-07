@@ -14,7 +14,7 @@ module HomePage
         
         content =  type.to_s == "filter" ? "" : content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert")
         type = :success if ["notice", "filter"].include? type.to_s
-        type = :danger   if ["alert", "error"].include? type.to_s
+        type = :danger   if ["alert", "error", "recaptcha_error"].include? type.to_s
         content += raw(message)
         text = content_tag(:div, content, :class => "alert fade in alert-#{type}") 
         flash_messages << text if message
