@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <%= stylesheet_link_tag 'home_page/application', media: 'all' %>
+    <%= csrf_meta_tags %>
+    <link href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144"/>
+    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114"/>
+    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72"/>
+    <link href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed"/>
+  </head>
+  <body>
+    <div class="container">
+      <div id="flash"
+        <%= bootstrap_flash_raw %>
+      </div>
+
+      <div class="content">
+<% if content_for?(:title) %>       
+        <div class="row">
+          <div class="col-md-12">
+            <div class="page-header">
+              <h2 id="title"><%= yield :title %></h2>
+            </div>
+          </div>
+        </div>
+<% end %>
+        <div class="row">
+          <div class="col-md-12">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>      
+    
+    <%= javascript_include_tag 'home_page/application' %>
+  </body>
+</html>

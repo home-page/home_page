@@ -17,6 +17,10 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'rails', '~> 4.2.0'
-
+  s.add_dependency 'therubyracer'#, :require => 'v8'
+  s.add_dependency 'twitter-bootswatch-rails', '~> 3.3.2.0'
+  s.add_dependency 'twitter-bootswatch-rails-fontawesome', '~> 4.3.0.0'
+  s.add_dependency 'jquery-rails', '~> 4.0.3'
+  
   s.add_development_dependency 'mysql2'
 end
