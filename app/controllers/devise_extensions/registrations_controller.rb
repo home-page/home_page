@@ -3,7 +3,7 @@ class DeviseExtensions::RegistrationsController < Devise::RegistrationsControlle
   def create
     build_resource(params[:user])
 
-    captcha_verified = if Rails.env == 'development' || Rails.env == 'production'
+    captcha_verified = if Rails.env == 'production'
       verify_recaptcha(model: resource, message: I18n.t('general.exceptions.wrong_recaptcha'))
     else
       true

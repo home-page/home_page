@@ -14,8 +14,10 @@
   
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <%= recaptcha_tags if resource.new_record? && (Rails.env == 'production' || Rails.env == 'development') %>
+  <% if resource.new_record? && (Rails.env == 'production') %>
+      <%= recaptcha_tags %>
       <br/>
+  <% end %>     
       <%= f.button :submit %>
       <br/>
       <br/>
