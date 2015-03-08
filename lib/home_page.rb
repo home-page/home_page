@@ -17,7 +17,7 @@ require 'will_paginate'
 require 'will_paginate-bootstrap'
 require 'turbolinks'
 require 'uglifier'
-require 'yui-compressor'
+require 'yui/compressor'
 
 require 'home_page/navigation'
 require 'home_page/simple_navigation_renderer/breadcrumbs_without_method_links'
