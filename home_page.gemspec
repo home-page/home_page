@@ -33,8 +33,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple-navigation', '~> 3.14.0'  
   s.add_dependency 'simple-navigation-bootstrap', '~> 1.0.0'
   s.add_dependency 'redcarpet', '~> 3.2.2'
+  s.add_dependency 'albino', '~> 1.3.3'  
+  s.add_dependency 'nokogiri', '~> 1.6.6.2'
   s.add_dependency 'auto_html', '~> 1.6.4'
   s.add_dependency 'will_paginate', '~> 3.0.7'
+  s.add_dependency 'will_paginate-bootstrap', '~> 1.0.1'
   
   s.add_development_dependency 'mysql2'
 end
