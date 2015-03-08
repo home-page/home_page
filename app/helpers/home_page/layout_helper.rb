@@ -1,7 +1,7 @@
 module HomePage
   module LayoutHelper
     def breadcrumbs
-      result = render_navigation context: application_navigation, renderer: :breadcrumbs_without_method_links, join_with: ' &gt; '
+      result = render_navigation context: :main, renderer: :breadcrumbs_without_method_links, join_with: ' &gt; '
       result = result && result.scan('<a').length > 1 ? result : ''
       
       if respond_to?(:resource) && resource.respond_to?(:ancestors)
@@ -21,7 +21,7 @@ module HomePage
     
     def sidenav(links_count = 2)
       links_count ||= 2
-      result = render_navigation context: application_navigation, renderer: :twitter_sidenav, level: @twitter_sidenav_level
+      result = render_navigation context: :main, renderer: :twitter_sidenav, level: @twitter_sidenav_level
       
       result && result.scan('<a').length >= links_count ? result : ''
     end
