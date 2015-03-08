@@ -16,6 +16,7 @@ require 'auto_html'
 require 'will_paginate'
 require 'will_paginate-bootstrap'
 require 'turbolinks'
+require 'uglifier'
 
 require 'home_page/navigation'
 require 'home_page/simple_navigation_renderer/breadcrumbs_without_method_links'
