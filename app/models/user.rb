@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     user.skip_confirmation_notification!
     user.confirmation_sent_at = nil
   end
+  
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
