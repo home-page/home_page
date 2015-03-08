@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   
   respond_to :html
   
-  helper_method :resource
-  
   before_filter :authenticate_user!
   
   def index
