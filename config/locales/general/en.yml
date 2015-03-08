@@ -5,11 +5,17 @@ en:
     
     index:
       title: Home
+    sign_in_title: Please sign in
+    sign_in: Sign in
+    remember_me: Remember me
     submit: Submit
     new: New
     edit: Edit
     destroy: Destroy
     actions: Actions
+    coming_soon: Coming soon
+    back_to_top: Back to top
+    powered_by_home_page_software: Powered by %{link}.
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'

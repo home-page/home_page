@@ -1,0 +1,9 @@
+<%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin' } do |f| %>
+  <h2 class="form-signin-heading"><%= t('general.sign_in_title') %></h2>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :remember_me, as: :boolean, label: false, inline_label: t('general.remember_me') %>
+  <%= f.submit t('general.sign_in'), class: 'btn btn-lg btn-primary btn-block' %>
+  <br/>
+  <%= render 'devise/shared/links' %>
+<% end %>
