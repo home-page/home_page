@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap', '~> 1.0.1'
   s.add_dependency 'turbolinks', '~> 2.5.3'
   s.add_dependency 'uglifier', '~> 2.7.1'
+  s.add_dependency 'yui-compressor', '~> 0.12.0'
   
   s.add_development_dependency 'mysql2'
 end
