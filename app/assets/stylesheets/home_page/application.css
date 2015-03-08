@@ -1,5 +1,6 @@
 /*
  *= require_self
+ *= require home_page/variables
  *= require home_page/loader
  *= require home_page/bootswatch
  *= require home_page/pygments

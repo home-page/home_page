@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+#Rails.application.config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
