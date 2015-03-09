@@ -1,8 +1,17 @@
 module HomePage
   module Navigation
     class Base
+      @@items = [:users, :authentication]
       @@products = {}
       @@menu_options = {}
+      
+      def self.items
+        @@items
+      end
+      
+      def self.items=(value)
+        @@items = value
+      end
       
       def self.add_product(slug, text)
         @@products[slug] = text
@@ -28,8 +37,10 @@ module HomePage
         navigation.items do |primary, options|
           primary.dom_class = 'nav navbar-nav'
           
-          [:users, :authentication].each do |resource|
-            instance_exec primary, ::HomePage::Navigation::Base.menu_options(resource), &::HomePage::Navigation.menu_code(resource)
+          ::HomePage::Navigation::Base.items.each do |item|
+            klass = "HomePage#{item.is_a?(Array) ? item.first.to_s.classify : ''}::Navigation"
+            item = item.is_a?(Array) ? item.last : item
+            instance_exec primary, HomePage::Navigation::Base.menu_options(item), &klass.constantize.menu_code(item)
           end
         end
       end
