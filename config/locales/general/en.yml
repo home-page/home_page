@@ -19,6 +19,7 @@ en:
     year: Year
     name: Name
     position: position
+    liked_at: liked at
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'
