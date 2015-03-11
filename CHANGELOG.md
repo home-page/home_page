@@ -1,5 +1,10 @@
 ## unreleased ##
 
+## 0.0.5 (March 11, 2015) ##
+
+*   #44 Sets up hosts initializer for Volontari.at.
+*   Adds httparty gem. Introduces PaginationMetadata class.
+
 ## 0.0.4 (March 10, 2015) ##
 
 *   #8 Setups socialicious for social links with icons.
