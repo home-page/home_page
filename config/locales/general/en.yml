@@ -16,6 +16,9 @@ en:
     coming_soon: Coming soon
     back_to_top: Back to top
     powered_by_home_page_software: Powered by %{link}.
+    year: Year
+    name: Name
+    position: position
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'
@@ -30,7 +33,10 @@ en:
       wrong_recaptcha: The captcha code which you typed in is wrong.
       access_denied: Access denied
       not_found: Resource not found.
-            
+      
+    volontariat:
+      request_failed: Volontari.at request failed!
+              
   pages:
     privacy_policy:
       title: Privacy Police
