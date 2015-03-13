@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   
   def update
     if params[:user][:password].present? ? @user.update_attributes(params[:user]) : @user.update_without_password(params[:user])
-      redirect_to edit_user_path(current_user), notice: t('general.form.successfully_updated')
+      redirect_to edit_user_path(@user), notice: t('general.form.successfully_updated')
     else
       render :edit
     end
