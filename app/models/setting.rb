@@ -6,7 +6,7 @@ class Setting < RailsSettings::CachedSettings
       value
     elsif Setting.defaults[var].is_a?(Array) || Setting.defaults[var].is_a?(Hash)
       JSON.parse(value)
-    elsif Setting.defaults[var].is_a?(Boolean)
+    elsif Setting.defaults[var].is_a?(TrueClass) || Setting.defaults[var].is_a?(FalseClass)
       value == 'true'
     elsif Setting.defaults[var].is_a?(Fixnum)
       value.to_i
