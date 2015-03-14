@@ -21,6 +21,7 @@ require 'yui/compressor'
 require 'httparty'
 require 'rails-settings-cached'
 
+require 'home_page/api_provider_host'
 require 'home_page/navigation'
 require 'home_page/pagination_metadata'
 require 'home_page/simple_navigation_renderer/breadcrumbs_without_method_links'

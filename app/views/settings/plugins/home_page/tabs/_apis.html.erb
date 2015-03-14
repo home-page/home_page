@@ -1,0 +1,20 @@
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+<% Setting['home_page.general.available_apis'].each_with_index do |provider, index| %> 
+    <li role="presentation"<% if index == 0 %> class="active"<% end %>>
+      <a href="#home_page_settings_apis_#{provider}" aria-controls="home_page_settings_apis_#{provider}" role="tab" data-toggle="tab">
+        <%= t("general.apis.providers.#{provider}.title") %>
+      </a>
+    </li>
+<% end %>
+  </ul>
+  <div class="tab-content">
+<% Setting['home_page.general.available_apis'].each_with_index do |provider, index| %>    
+    <div role="tabpanel" class="tab-pane<% if index == 0 %> active<% end %>" id="#home_page_settings_apis_#{provider}">
+      <p>
+        <%= render partial: "apis/#{provider}/settings", locals: { f: f } %>
+      </p>
+    </div>
+<% end %>
+  </div>
+</div>
