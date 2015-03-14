@@ -5,8 +5,6 @@ class SettingsController < ApplicationController
   
   def index
     @settings = Setting.unscoped.index_by(&:var)
-    Rails.cache.delete('settings:home_page.general.navigation.items')
-    Setting.defaults['home_page.general.navigation.items'] = [:users, :settings, :authentication]
   end
   
   def updates
