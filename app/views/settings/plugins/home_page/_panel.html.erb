@@ -16,11 +16,22 @@
               <%= t('settings.index.plugins.home_page.tabs.general.title') %>
             </a>
           </li>
+          <li role="presentation">
+            <a href="#home_page_settings_apis" aria-controls="home_page_settings_apis" role="tab" data-toggle="tab">
+              <%= t('settings.index.plugins.home_page.tabs.apis.title') %>
+            </a>
+          </li>
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="home_page_settings_general">
             <p>
               <%= setting_input f, 'home_page.general.navigation.items' %>
+              <%= setting_input f, 'home_page.general.enabled_apis' %>
+            </p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="home_page_settings_apis">
+            <p>
+              <%= render partial: "settings/plugins/home_page/tabs/apis", locals: { f: f } %>
             </p>
           </div>
         </div>

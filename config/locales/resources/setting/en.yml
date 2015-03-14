@@ -10,6 +10,8 @@ en:
           tabs:
             general:
               title: General
+            apis:
+              title: APIs
     
     updates:
       done: Update done. 
@@ -19,3 +21,5 @@ en:
         general:
           navigation:
             items: Navigation Items
+          
+          enabled_apis: Enabled APIs
