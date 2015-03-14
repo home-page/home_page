@@ -1,0 +1,21 @@
+en:
+  settings:
+    index:
+      title: Settings
+      default_value: "Default value: %{value}"
+      plugins:
+        home_page:
+          index:
+            title: Core
+          tabs:
+            general:
+              title: General
+    
+    updates:
+      done: Update done. 
+            
+    vars:
+      home_page:
+        general:
+          navigation:
+            items: Navigation Items

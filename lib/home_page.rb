@@ -19,6 +19,7 @@ require 'turbolinks'
 require 'uglifier'
 require 'yui/compressor'
 require 'httparty'
+require 'rails-settings-cached'
 
 require 'home_page/navigation'
 require 'home_page/pagination_metadata'

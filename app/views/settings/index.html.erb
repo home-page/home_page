@@ -1,0 +1,13 @@
+<% content_for :title do %><%= t('settings.index.title') %><% end %>
+
+<%= simple_form_for :setting, url: updates_settings_path, html: { method: :put, class: 'form-horizontal' }, wrapper: :horizontal_form do |f| %>
+  <div class="panel-group" id="settings_accordion" role="tablist" aria-multiselectable="true">
+  <% Setting['home_page.general.plugins'].each_with_index do |plugin, index| %>
+  <%= render partial: "settings/plugins/#{plugin}/panel", locals: { f: f, index: index } %>
+  <% end %>
+  </div>
+  
+  <p>
+    <%= f.submit t('general.submit'), class: 'btn btn-default' %>
+  </p>
+<% end %>

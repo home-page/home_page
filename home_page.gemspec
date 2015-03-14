@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'uglifier', '~> 2.7.1'
   s.add_dependency 'yui-compressor', '~> 0.12.0'
   s.add_dependency 'httparty', '~> 0.13.3'
+  s.add_dependency 'rails-settings-cached', '~> 0.4.1'
   
   s.add_development_dependency 'mysql2'
 end

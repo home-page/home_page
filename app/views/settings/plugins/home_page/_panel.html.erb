@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="heading<%= index + 1 %>">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#settings_accordion" href="#home_page_settings" aria-expanded="true" aria-controls="home_page_settings">
+        <%= t('settings.index.plugins.home_page.index.title') %>
+      </a>
+    </h4>
+  </div>
+  
+  <div id="home_page_settings" class="panel-collapse collapse<% if index == 0 %> in<% end %>" role="tabpanel" aria-labelledby="heading<%= index + 1 %>">
+    <div class="panel-body">
+      <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#home_page_settings_general" aria-controls="home_page_settings_general" role="tab" data-toggle="tab">
+              <%= t('settings.index.plugins.home_page.tabs.general.title') %>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="home_page_settings_general">
+            <p>
+              <%= setting_input f, 'home_page.general.navigation.items' %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

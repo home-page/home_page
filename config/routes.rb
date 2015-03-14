@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index, :edit, :update, :destroy]
   
+  resources :settings, only: [:index, :edit, :update] do
+    collection do
+      put :updates
+    end
+  end
+  
   root to: 'home#index'
 end

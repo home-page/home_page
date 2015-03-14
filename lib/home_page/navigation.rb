@@ -1,17 +1,8 @@
 module HomePage
   module Navigation
     class Base
-      @@items = [:users, :authentication]
       @@products = {}
       @@menu_options = {}
-      
-      def self.items
-        @@items
-      end
-      
-      def self.items=(value)
-        @@items = value
-      end
       
       def self.add_product(slug, text)
         @@products[slug] = text
@@ -37,8 +28,8 @@ module HomePage
         navigation.items do |primary, options|
           primary.dom_class = 'nav navbar-nav'
           
-          ::HomePage::Navigation::Base.items.each do |item|
-            klass = "HomePage#{item.is_a?(Array) ? item.first.to_s.classify : ''}::Navigation"
+          Setting['home_page.general.navigation.items'].each do |item|
+            klass = "HomePage#{item.is_a?(Array) ? item.first.classify : ''}::Navigation"
             item = item.is_a?(Array) ? item.last : item
             instance_exec primary, HomePage::Navigation::Base.menu_options(item), &klass.constantize.menu_code(item)
           end
@@ -48,7 +39,7 @@ module HomePage
     
     def self.menu_code(resource)
       case resource
-      when :users
+      when 'users'
         Proc.new do |primary, options|
           if user_signed_in?
             primary.item :users, I18n.t('users.index.title'), users_path do |users|
@@ -60,7 +51,11 @@ module HomePage
             end
           end
         end
-      when :authentication
+      when 'settings'
+        Proc.new do |primary, options|
+          primary.item :settings, I18n.t('settings.index.title'), settings_path if user_signed_in?
+        end  
+      when 'authentication'
         Proc.new do |primary, options|
           if user_signed_in?
             primary.item :sign_out, I18n.t('authentication.sign_out'), destroy_user_session_path, method: :delete
