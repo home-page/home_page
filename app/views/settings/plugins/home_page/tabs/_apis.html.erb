@@ -1,18 +1,22 @@
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
-<% Setting['home_page.general.available_apis'].each_with_index do |provider, index| %> 
+<% Setting['home_page.general.plugins'].each_with_index do |plugin, index| %>
+  <% next if (Setting["#{plugin}.general.available_apis"] || []).none? %>
     <li role="presentation"<% if index == 0 %> class="active"<% end %>>
-      <a href="#home_page_settings_apis_#{provider}" aria-controls="home_page_settings_apis_#{provider}" role="tab" data-toggle="tab">
-        <%= t("general.apis.providers.#{provider}.title") %>
+  <% id = "home_page_settings_#{plugin == 'home_page' ? 'core' : plugin}_apis" %>
+      <a href="#<%= id %>" aria-controls="<%= id %>" role="tab" data-toggle="tab">
+        <%= t("settings.index.plugins.#{plugin}.index.title") %>
       </a>
     </li>
 <% end %>
   </ul>
   <div class="tab-content">
-<% Setting['home_page.general.available_apis'].each_with_index do |provider, index| %>    
-    <div role="tabpanel" class="tab-pane<% if index == 0 %> active<% end %>" id="#home_page_settings_apis_#{provider}">
+<% Setting['home_page.general.plugins'].each_with_index do |plugin, index| %>   
+  <% next if (Setting["#{plugin}.general.available_apis"] || []).none? %>
+  <% id = "home_page_settings_#{plugin == 'home_page' ? 'core' : plugin}_apis" %>
+    <div role="tabpanel" class="tab-pane<% if index == 0 %> active<% end %>" id="<%= id %>">
       <p>
-        <%= render partial: "apis/#{provider}/settings", locals: { f: f } %>
+        <%= render partial: 'settings/apis', locals: { f: f, plugin: plugin } %>
       </p>
     </div>
 <% end %>
