@@ -5,7 +5,7 @@ class PageModuleCollectionsController < ApplicationController
   
   def index
     slug_stub = if params[:slug_stub].blank?
-      @page_module_collection_slug_stubs = PageModuleCollection.pluck(:slug_stub).sort
+      @page_module_collection_slug_stubs = PageModuleCollection.pluck(:slug_stub).uniq.sort
       @page_module_collection_slug_stubs.first
     else
       params[:slug_stub]
@@ -13,7 +13,10 @@ class PageModuleCollectionsController < ApplicationController
     
     @page_module_collections = PageModuleCollection.where(slug_stub: slug_stub).paginate(page: params[:page], per_page: 10)
     
-    @page_module_slug_stubs = PageModule.pluck(:slug_stub).sort if params[:slug_stub].blank?
+    if params[:slug_stub].blank?
+      @page_module_slug_stubs = PageModule.pluck(:slug_stub).uniq.sort 
+      @page_modules = PageModule.where(slug_stub: @page_module_slug_stubs.first).paginate(page: params[:module_page], per_page: 10)
+    end
     
     render partial: 'page_module_collections/collection', layout: false if params[:slug_stub].present?
   end
