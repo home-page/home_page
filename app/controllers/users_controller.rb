@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @users = User.order('name ASC')
+    @users = User.order('name ASC').paginate(page: params[:page], per_page: 10)
   end
   
   def edit

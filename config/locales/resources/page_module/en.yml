@@ -1,0 +1,36 @@
+en:
+  page_modules:
+    index:
+      title: Page Modules
+      short_title: Modules
+      empty_collection: No page modules available.
+      
+    new: 
+      title: New Page Module
+      short_title: New Module
+      
+    edit: 
+      title: Edit Page Module
+  
+  activerecord:
+    models:
+      page_module: Page Module
+      
+    attributes:
+      page_module:
+        title: Title
+        description: Descriptions
+        partial_path: Partial Path
+        content: Content
+        data: Data
+        published_from: Published_from
+        published_until: Published until
+        
+    errors:
+      models:
+        page_module:
+          attributes:
+            base:
+              either_partial_path_or_content_must_be_present: Either partial path or content must be present!
+            content: 
+              liquid_syntax_invalid: "Liquid template error: %{message}"
