@@ -20,6 +20,7 @@ en:
     name: Name
     position: position
     liked_at: liked at
+    todo: TODO
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'
@@ -44,10 +45,11 @@ en:
     apis:
       host: Host
       user_id: User ID
+      user_name: User Name
       
       providers:
         volontariat:
-          title: "Volontari.at"
+          title: Volontari.at
       
       request_failed: "%{provider} request failed!"
               
