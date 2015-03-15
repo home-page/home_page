@@ -14,8 +14,4 @@ en:
   
   activerecord:
     models:
-      page_module: Page Module Collection
-      
-    attributes:
-      page_module:
-        title: Title
+      page_module_collection: Page Module Collection
