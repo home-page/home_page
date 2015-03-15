@@ -3,6 +3,7 @@
  *= require home_page/variables
  *= require home_page/loader
  *= require home_page/bootswatch
+ *= require bootstrap-datetimepicker
  *= require home_page/pygments
  *= require home_page/socialicious
 */

@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'therubyracer'#, :require => 'v8'
   s.add_dependency 'twitter-bootswatch-rails', '~> 3.3.2.0'
   s.add_dependency 'twitter-bootswatch-rails-fontawesome', '~> 4.3.0.0'
+  s.add_dependency 'momentjs-rails', '>= 2.9.0'
+  s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
   s.add_dependency 'jquery-rails', '~> 4.0.3'
   s.add_dependency 'devise', '~> 3.4.1'
   s.add_dependency 'friendly_id', '~> 5.1.0'
@@ -43,6 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'yui-compressor', '~> 0.12.0'
   s.add_dependency 'httparty', '~> 0.13.3'
   s.add_dependency 'rails-settings-cached', '~> 0.4.1'
+  s.add_dependency 'liquid', '~> 3.0.1'
   
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'rspec-rails', '~> 3.2.1'
