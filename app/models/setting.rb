@@ -1,6 +1,10 @@
 class Setting < RailsSettings::CachedSettings
   attr_accessible :var, :value
   
+  def expire_cache
+    Rails.cache.delete("settings:#{var}") 
+  end
+  
   def cast_value
     if !value.is_a?(String)
       value
@@ -14,6 +18,9 @@ class Setting < RailsSettings::CachedSettings
       value.to_f
     elsif Setting.defaults[var].is_a?(Symbol)
       value.to_sym
+    else
+      # e.g. class String
+      value
     end
   end
 end
