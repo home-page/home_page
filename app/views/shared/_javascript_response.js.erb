@@ -1,0 +1,50 @@
+<% message = flash[:notice] || flash[:alert] %>
+<% flash.delete(:notice); flash.delete(:alert) %>
+<% alert = message.present? ? "alert('#{message}');" : '' %>
+
+<% if @path.present? %>
+  <% if @template_format == 'html' %>
+    $.ajax({ url: "<%= @path %>", data: <%= raw @data.to_json %>, type: "<%= @method.to_s.upcase %>", dataType: "html"}).done(function(data) {
+      $("<%= @target %>").html(data);
+      <%= raw alert %>
+      <% if @close_modal %>$('#modal').modal('hide');<% end %>
+    })
+    .fail(function(data) {
+      <%= raw alert %>
+      alert("Failed to load <%= @path %>!");
+      <% if @close_modal %>$('#modal').modal('hide');<% end %>
+    });
+  <% else %>
+    $.ajax({ url: "<%= @path %>", data: <%= raw @data.to_json %>, type: "<%= @method.to_s.upcase %>", dataType: "script"}).done(function(data) {
+      eval(data);
+      <%= raw alert %>
+      <% if @close_modal %>$('#modal').modal('hide');<% end %>
+    })
+    .fail(function(data) {
+      <%= raw alert %>
+      alert("Failed to load <%= @path %>!");
+      <% if @close_modal %>$('#modal').modal('hide');<% end %>
+    });
+  <% end %>
+<% elsif @template.present? %>
+  <% if @template_format == 'html' %>
+    <% if @target_is_modal %>
+      $("<%= @target %>").html("<%= escape_javascript(
+        render(
+          partial: 'shared/layouts/modal', 
+          locals: { title: @modal_title, body: render(template: "#{controller_name}/#{@template}.html") }
+        ) 
+      ) %>");
+    <% else %>
+      $("<%= @target %>").html("<%= escape_javascript render(template: "#{controller_name}/#{@template}.html") %>");
+      <% if @close_modal %>$('#modal').modal('hide');<% end %>
+    <% end %>
+  <% elsif @template_format == 'js' %>
+    <%= render template: "#{controller_name}/#{@template}.js" %>
+    <% if @close_modal %>$('#modal').modal('hide');<% end %>
+  <% end %>
+  <%= raw alert %>
+<% elsif message.present? %>
+  <%= raw alert %>
+  <% if @close_modal %>$('#modal').modal('hide');<% end %>
+<% end %>
