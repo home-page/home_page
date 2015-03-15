@@ -20,7 +20,7 @@ class PageModule < ActiveRecord::Base
   validates :title, presence: true
   
   validate :either_partial_path_or_content_present
-  validate :valid_liquid_syntax
+  validate :valid_liquid_syntax, if: 'content.present?'
   
   attr_accessible :title, :description, :partial_path, :content, :data, :moduleable_type, :moduleable_id, :published_from, :published_until
   
@@ -29,6 +29,14 @@ class PageModule < ActiveRecord::Base
   friendly_id :title, use: :slugged  
   
   before_save :set_slug_stub
+  
+  def plugin
+    if slug_stub.present? && Setting['home_page.general.plugins'].include?("home_page_#{slug_stub}") || slug_stub == 'home'
+      slug_stub      
+    else
+      nil
+    end
+  end
   
   private
   
