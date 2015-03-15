@@ -27,6 +27,29 @@ class HomePage::ApplicationController < ActionController::Base
 
   private
 
+  def render_or_redirect_by_request_type
+    if request.xhr? || request.env['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'
+      render_javascript_response
+    elsif @template.present?
+      render @template
+    elsif @path.present?
+      redirect_to @path
+    end
+  end
+  
+  def render_javascript_response
+    @method ||= :get
+    @data ||= {}
+    @template ||= action_name unless @path.present?
+    @template_format ||= 'html'
+    @target ||= "#bootstrap_modal"
+    @target_is_modal = @target_is_modal.nil? ? true : @target_is_modal
+    @modal_title ||= I18n.t("#{controller_name}.#{action_name}.title")
+    @close_modal ||= false
+  
+    render partial: 'shared/javascript_response.js', layout: false
+  end
+
   def custom_view_path
     prepend_view_path 'app/views/custom'
   end

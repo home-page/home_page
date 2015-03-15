@@ -1,0 +1,21 @@
+en:
+  page_module_collections:
+    index:
+      title: Page Module Collections
+      short_title: Collections
+      empty_collection: No page module collections available.
+      
+    new: 
+      title: New Page Module Collection
+      short_title: New Collection
+      
+    edit: 
+      title: Edit Page Module Collection
+  
+  activerecord:
+    models:
+      page_module: Page Module Collection
+      
+    attributes:
+      page_module:
+        title: Title

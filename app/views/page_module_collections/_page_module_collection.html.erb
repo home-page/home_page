@@ -1,0 +1,37 @@
+<tr class="<%= cycle('odd', 'even') %>" id="page_module_collections_row_<%= page_module_collection.id %>">
+  <td>
+    <%= link_to page_module_collection.title, page_module_collection_path(page_module_collection) %>
+  </td>
+  <td>
+    <%= link_to page_module_collection.slug, page_module_collection_path(page_module_collection) %>
+  </td>
+  <td>
+    <div class="dropdown">
+      <button 
+        class="btn btn-default dropdown-toggle" type="button" id="page_module_collection_<%= page_module_collection.id %>_actions" 
+        data-toggle="dropdown" aria-expanded="true">
+        <%= t('general.actions') %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="page_module_collection_<%= page_module_collection.id %>_actions">
+        <li role="presentation">
+          <%= link_to(
+            t('general.destroy'), page_module_collection_path(page_module_collection), 
+            id: "page_module_collection_#{page_module_collection.id}", method: :delete, 
+            data: { confirm: t('general.questions.are_you_sure') }, remote: true
+          ) %>
+        </li>
+        <li role="presentation">
+          &nbsp;&nbsp;
+          <button 
+            type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" 
+            data-url="<%= edit_page_module_collection_path(page_module_collection) %>" 
+            data-title="<%= t('page_module_collections.edit.title') %>" data-only-update-body="false"
+          >
+            <span class="glyphicon glyphicon-pencil"></span> <%= t('general.edit') %>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>

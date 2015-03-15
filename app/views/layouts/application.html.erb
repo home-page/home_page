@@ -4,6 +4,7 @@
     <%= render partial: 'layouts/shared/head' %>
   </head>
   <body>
+    <%= render partial: 'layouts/shared/modal' %>
     <%= render partial: 'layouts/shared/navigation' %>
     
     <div class="container">
@@ -24,7 +25,7 @@
         </div>
 <% end %>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12" id="page">
             <%= yield %>
           </div>
         </div>

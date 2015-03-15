@@ -1,0 +1,11 @@
+<% message = flash[:notice] %>
+<% flash.delete(:notice) %>
+<% alert = message.present? ? "alert('#{message}');" : '' %>
+
+$("#page_module_collections_row_<%= @page_module_collection.id %>").replaceWith("<%= escape_javascript(
+  render(
+    partial: 'page_module_collections/page_module_collection', locals: { page_module_collection: @page_module_collection }
+  ) 
+) %>");
+$('#modal').modal('hide');
+<%= raw alert %>

@@ -39,6 +39,27 @@ module HomePage
     
     def self.menu_code(resource)
       case resource
+      when 'page_modules'
+        Proc.new do |primary, options|
+          if user_signed_in?
+            primary.item :page_module_collections, I18n.t('page_modules.index.title'), page_module_collections_path do |page_module_collections|
+              page_module_collections.item :new, I18n.t('general.new'), new_page_module_collection_path
+              
+              unless (@page_module_collection.new_record? rescue true)
+                page_module_collections.item :destroy, I18n.t('general.destroy'), page_module_collection_path(@page_module_collection), method: :delete, confirm: I18n.t('general.questions.are_you_sure')
+                page_module_collections.item :new_module, I18n.t('page_modules.new.short_title'), new_page_module_collection_module_path(@page_module_collection)
+                
+                page_module_collections.item :modules, I18n.t('page_modules.index.short_title'), page_module_collection_modules_path do |page_modules|
+                  unless (@page_module.new_record? rescue true)
+                    page_modules.item :edit, I18n.t('general.edit'), edit_page_module_path(@page_module) do |page_module|
+                      page_module.item :destroy, I18n.t('general.destroy'), page_module_path(@page_module), method: :delete, confirm: I18n.t('general.questions.are_you_sure')
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
       when 'users'
         Proc.new do |primary, options|
           if user_signed_in?

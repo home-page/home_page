@@ -1,0 +1,99 @@
+<% content_for :title do %><%= t('page_modules.index.title') %><% end %>
+
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#page_module_collections_tab" aria-controls="page_module_collections_tab" role="tab" data-toggle="tab">
+        <%= t('page_module_collections.index.short_title') %>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#page_modules_tab" aria-controls="page_modules_tab" role="tab" data-toggle="tab">
+        <%= t('page_modules.index.short_title') %>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="page_module_collections_tab">
+      <p>
+<% if @page_module_collection_slug_stubs.none? %> 
+        <div class="alert alert-info" role="alert">
+          <%= t('page_module_collections.index.empty_collection') %>
+        </div>  
+<% else %>     
+        <div role="tabpanel">
+          <ul class="nav nav-tabs" role="tablist">
+  <% @page_module_collection_slug_stubs.each_with_index do |slug_stub, index| %>        
+            <li role="presentation"<% if index == 0 %> class="active"<% end %>>
+              <a 
+                href="<%= page_module_collections_path(slug_stub: slug_stub) %>" 
+                data-target="#page_module_collections_slug_stub_<%= slug_stub %>"  
+                aria-controls="page_module_collections_slug_stub_<%= slug_stub %>" 
+                role="tab" data-toggle="tabajax"
+              >
+                <%= slug_stub.titleize %>
+              </a>
+            </li>
+  <% end %>            
+          </ul>
+          <div class="tab-content">
+  <% @page_module_collection_slug_stubs.each_with_index do |slug_stub, index| %>                  
+            <div role="tabpanel" class="tab-pane<% if index == 0 %> active<% end %>" id="page_module_collections_slug_stub_<%= slug_stub %>">
+    <% if index == 0 %>
+              <%= render partial: 'page_module_collections/collection' %>
+    <% end %>            
+            </div>
+  <% end %>            
+          </div>
+        </div>
+<% end %>     
+      </p>
+      
+      <p>
+        <button 
+          type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" data-url="<%= new_page_module_collection_path %>" 
+          data-title="<%= t('page_module_collections.new.title') %>" data-only-update-body="false"
+        >
+          <span class="glyphicon glyphicon-plus"></span> <%= t('page_module_collections.new.short_title') %>
+        </button>
+      </p>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="page_modules_tab">
+      <p>
+<% if @page_module_slug_stubs.none? %> 
+        <div class="alert alert-info" role="alert">
+          <%= t('page_modules.index.empty_collection') %>
+        </div>
+<% else %>       
+        <div role="tabpanel">
+          <ul class="nav nav-tabs" role="tablist">
+  <% @page_module_slug_stubs.each_with_index do |slug_stub, index| %>            
+            <li role="presentation"<% if index == 0 %> class="active"<% end %>>
+              <a 
+                href="<%= page_modules_path(slug_stub: slug_stub) %>" 
+                data-target="#page_modules_slug_stub_<%= slug_stub %>" aria-controls="page_modules_slug_stub_<%= slug_stub %>" 
+                role="tab" data-toggle="tabajax"
+              >
+                <%= slug_stub.titleize %>
+              </a>
+            </li>
+  <% end %>            
+          </ul>
+          <div class="tab-content">
+  <% @page_module_slug_stubs.each_with_index do |slug_stub, index| %>              
+            <div role="tabpanel" class="tab-pane active" id="page_modules_slug_stub_<%= slug_stub %>">
+            </div>
+  <% end %>            
+          </div>
+        </div>
+<% end %>
+      </p>
+      
+      <p>
+        <%= link_to new_page_module_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-plus"></span> <%= t('page_modules.new.short_title') %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

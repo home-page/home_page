@@ -21,12 +21,18 @@ en:
     position: position
     liked_at: liked at
     todo: TODO
+    loading: Loading ...
+    close: Close
+    
+    attributes:
+      slug: Slug
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'
       successfully_created: Creation successful
       successfully_updated: Update successful
       destroyed: Resource destroyed successfully.
+      destroy_failed: Destruction of resource failed.
       
     questions:
       are_you_sure: Are you sure?
