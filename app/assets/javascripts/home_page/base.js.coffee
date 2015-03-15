@@ -21,18 +21,3 @@ $(document).ready ->
       modal.find('.modal-body').load url
     else
       $('.modal-content').load url
-      
-  $(document.body).on 'click', '.remote_modal_link', (event) ->
-    $this = $(this)
-    
-    url = if $this.data('url') then $this.data('url') else $this.attr('href')
-    
-    $.ajax(url: url, type: 'GET', dataType: 'html').success (data) ->
-      $('#bootstrap_modal').html(data)
-      $('#bootstrap_modal').modal(show: true, keyboard: false)
-      
-    event.preventDefault()
-    
-  $(document.body).on 'click', '#close_bootstrap_modal_button', (event) ->
-    $('#bootstrap_modal').modal('hide')
-    event.preventDefault()
