@@ -7,6 +7,10 @@ class SettingsController < ApplicationController
     @settings = Setting.unscoped.index_by(&:var)
   end
   
+  def show
+    render json: Setting[params[:id2] || params[:id]].to_json
+  end
+  
   def updates
     @settings = Setting.unscoped.index_by(&:var)
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :page_modules, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :users, only: [:index, :edit, :update, :destroy]
   
-  resources :settings, only: [:index, :edit, :update] do
+  resources :settings, only: [:index, :show, :edit, :update] do
     collection do
       put :updates
     end
