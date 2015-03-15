@@ -1,0 +1,25 @@
+<% content_for :modal_footer do %>
+  <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('general.close') %></button>
+  <button type="submit" class="btn btn-primary"><%= t('general.submit') %></button>
+<% end %>
+
+<%= simple_form_for(
+  resource, url: resource.new_record? ? page_modules_path : page_module_path(resource), wrapper: :horizontal_form,
+  method: resource.new_record? ? :post : :put, remote: request.xhr?, html: { class: 'form-horizontal', autocomplete: 'off' }
+) do |f| %>
+  <% if request.xhr? %>
+    <% content_for :modal_body do %>
+      <%= render partial: 'page_modules/fields', locals: { f: f } %>
+    <% end %>
+   
+    <%= render partial: 'shared/layouts/modal' %>
+  <% else %>
+    <%= render partial: 'page_modules/fields', locals: { f: f } %>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary"><%= t('general.submit') %></button>
+      </div>
+    </div>
+  <% end %>
+<% end %>

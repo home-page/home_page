@@ -1,0 +1,51 @@
+<%= devise_error_messages! %>
+     
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input(
+  :plugin, collection: Setting['home_page.general.plugins'].map do |p| 
+    p = p == 'home_page' ? 'home' : p.gsub('home_page_', ''); [p.humanize.titleize, p] 
+  end, input_html: { data: { 'setting-url' => setting_path('show', id2: 'x') }}
+) %>
+<%= f.input(
+  :partial_path, collection: if f.object.plugin.present?
+    Setting["#{(f.object.plugin == 'home' ? 'home_page' : 'home_page_' + f.object.plugin)}.general.partial_paths"]
+  else
+    []
+  end
+) %>
+
+<div class="form-group string optional page_module_published_from">
+  <label for="page_module_published_from" class="string optional col-sm-3 control-label">
+    <%= t('activerecord.attributes.page_module.published_from') %>
+  </label>
+  <div class="col-sm-9">
+    <div class='input-group date' id='page_module_published_from_datetime_picker'>
+      <%= f.text_field :published_from, class: 'form-control' %>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="form-group string optional page_module_published_until">
+  <label for="page_module_published_until" class="string optional col-sm-3 control-label">
+    <%= t('activerecord.attributes.page_module.published_until') %>
+  </label>
+  <div class="col-sm-9">
+    <div class='input-group date' id='page_module_published_until_datetime_picker'>
+      <%= f.text_field :published_until, class: 'form-control' %>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+  $('#page_module_published_from_datetime_picker').datetimepicker({ format: 'YYYY-MM-DD hh:mm:ss' });
+  $('#page_module_published_until_datetime_picker').datetimepicker({ format: 'YYYY-MM-DD hh:mm:ss' });
+});
+</script>

@@ -1,0 +1,40 @@
+$(document).ready ->
+  $('[data-toggle="tabajax"]').click (e) ->
+    $this = $(this)
+    url = $this.attr('href')
+    target = $this.attr('data-target')
+    
+    $.get url, (data) ->
+      $(target).html data
+      
+    $this.tab 'show'
+    
+    false
+    
+  $(document.body).on 'show.bs.modal', '#modal', (event) ->
+    button = $(event.relatedTarget)
+    url = button.data('url')
+    modal = $(this)
+    modal.find('.modal-title').text button.data('title')
+    modal.find('.modal-body').html "<img src='<%= asset_path('home_page/spinner.gif') %>'/>"
+    
+    if button.data('only-update-body') == true
+      modal.find('.modal-body').load url
+    else
+      modal.find('.modal-content').load url
+      
+  $(document.body).on 'change', '#page_module_plugin', (event) ->
+    $('#page_module_partial_path').empty()
+    
+    plugin = $(this).val()
+    plugin = if plugin == 'home' then 'home_page' else 'home_page_' + plugin
+
+    $.getJSON $(this).data('setting-url').replace(/x/, "#{plugin}.general.partial_paths"), (data) ->
+      options = []
+      
+      $.each data, (index, value) ->
+        options.push "<option value='#{value}'>#{value}</option>"
+
+      $('#page_module_partial_path').html(options.join(''))
+         
+  $('.datetime_picker').datetimepicker()  

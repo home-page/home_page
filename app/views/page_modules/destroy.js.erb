@@ -1,0 +1,9 @@
+<% message = flash[:notice] || flash[:alert] %>
+<% flash.delete(:notice); flash.delete(:alert) %>
+<% alert = message.present? ? "alert('#{message}');" : '' %>
+
+<% unless @page_module.persisted? %>
+  $("#page_modules_row_<%= @page_module.id %>").remove();
+<% end %>
+
+<%= raw alert %>

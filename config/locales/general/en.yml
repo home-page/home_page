@@ -23,9 +23,13 @@ en:
     todo: TODO
     loading: Loading ...
     close: Close
+    not_available_short: n/a
     
     attributes:
+      title: Title
+      description: Description
       slug: Slug
+      published: Published?
     
     form:
       errors_count: '%{count} prohibited this object from being saved:'

@@ -59,41 +59,7 @@
       </p>
     </div>
     <div role="tabpanel" class="tab-pane" id="page_modules_tab">
-      <p>
-<% if @page_module_slug_stubs.none? %> 
-        <div class="alert alert-info" role="alert">
-          <%= t('page_modules.index.empty_collection') %>
-        </div>
-<% else %>       
-        <div role="tabpanel">
-          <ul class="nav nav-tabs" role="tablist">
-  <% @page_module_slug_stubs.each_with_index do |slug_stub, index| %>            
-            <li role="presentation"<% if index == 0 %> class="active"<% end %>>
-              <a 
-                href="<%= page_modules_path(slug_stub: slug_stub) %>" 
-                data-target="#page_modules_slug_stub_<%= slug_stub %>" aria-controls="page_modules_slug_stub_<%= slug_stub %>" 
-                role="tab" data-toggle="tabajax"
-              >
-                <%= slug_stub.titleize %>
-              </a>
-            </li>
-  <% end %>            
-          </ul>
-          <div class="tab-content">
-  <% @page_module_slug_stubs.each_with_index do |slug_stub, index| %>              
-            <div role="tabpanel" class="tab-pane active" id="page_modules_slug_stub_<%= slug_stub %>">
-            </div>
-  <% end %>            
-          </div>
-        </div>
-<% end %>
-      </p>
-      
-      <p>
-        <%= link_to new_page_module_path, class: 'btn btn-default' do %>
-          <span class="glyphicon glyphicon-plus"></span> <%= t('page_modules.new.short_title') %>
-        <% end %>
-      </p>
+      <%= render partial: 'page_modules/tab' %>
     </div>
   </div>
 </div>

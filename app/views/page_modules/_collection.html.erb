@@ -1,0 +1,19 @@
+<% if @page_modules.none? %>
+<p><%= t('page_module_collections.index.empty_collection') %></p>
+<% else %>
+  <table class='table table-striped'>
+    <thead>
+      <tr class='<%= cycle('odd', 'even') %>'>
+        <th style='width: 200px'><%= t('general.attributes.title') %></th>
+        <th style='width: 200px'><%= t('general.attributes.slug') %></th>
+        <th style='width: 200px'><%= t('general.attributes.published') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'page_modules/page_module', collection: @page_modules %>
+    </tbody>
+  </table>
+  
+  <%= will_paginate @page_module_collections, renderer: BootstrapPagination::Rails %>
+<% end %>

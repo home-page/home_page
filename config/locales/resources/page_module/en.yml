@@ -18,8 +18,6 @@ en:
       
     attributes:
       page_module:
-        title: Title
-        description: Descriptions
         partial_path: Partial Path
         content: Content
         data: Data

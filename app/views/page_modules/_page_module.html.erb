@@ -1,0 +1,43 @@
+<tr class="<%= cycle('odd', 'even') %>" id="page_modules_row_<%= page_module.id %>">
+  <td>
+    <%= link_to page_module.title, edit_page_module_path(page_module) %>
+  </td>
+  <td>
+    <%= link_to page_module.slug, edit_page_module_path(page_module) %>
+  </td>
+  <td>
+    <%= page_module.published_from.nil? ? t('general.not_available_short') : page_module.published_from.strftime('%d.%m.%Y %H:%M:%S') %>
+    <br/>
+    -
+    <br/>
+    <%= page_module.published_until.nil? ? t('general.not_available_short') : page_module.published_until.strftime('%d.%m.%Y %H:%M:%S') %>
+  </td>
+  <td>
+    <div class="dropdown">
+      <button 
+        class="btn btn-default dropdown-toggle" type="button" id="page_module_<%= page_module.id %>_actions" 
+        data-toggle="dropdown" aria-expanded="true">
+        <%= t('general.actions') %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="page_module_<%= page_module.id %>_actions">
+        <li role="presentation">
+          <%= link_to(
+            t('general.destroy'), page_module_path(page_module), id: "page_module_#{page_module.id}", method: :delete, 
+            data: { confirm: t('general.questions.are_you_sure') }, remote: true
+          ) %>
+        </li>
+        <li role="presentation">
+          &nbsp;&nbsp;
+          <button 
+            type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" 
+            data-url="<%= edit_page_module_path(page_module) %>" 
+            data-title="<%= t('page_modules.edit.title') %>" data-only-update-body="false"
+          >
+            <span class="glyphicon glyphicon-pencil"></span> <%= t('general.edit') %>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>
