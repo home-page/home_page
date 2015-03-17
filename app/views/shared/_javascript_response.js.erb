@@ -28,19 +28,19 @@
   <% end %>
 <% elsif @template.present? %>
   <% if @template_format == 'html' %>
-    <% if @target_is_modal %>
+    <% if @target_needs_modal_layout %>
       $("<%= @target %>").html("<%= escape_javascript(
         render(
           partial: 'shared/layouts/modal', 
-          locals: { title: @modal_title, body: render(template: "#{controller_name}/#{@template}.html") }
+          locals: { title: @modal_title, body: render(template: "#{@template_namespace}/#{@template}.html") }
         ) 
       ) %>");
     <% else %>
-      $("<%= @target %>").html("<%= escape_javascript render(template: "#{controller_name}/#{@template}.html") %>");
+      $("<%= @target %>").html("<%= escape_javascript render(template: "#{@template_namespace}/#{@template}.html") %>");
       <% if @close_modal %>$('#modal').modal('hide');<% end %>
     <% end %>
   <% elsif @template_format == 'js' %>
-    <%= render template: "#{controller_name}/#{@template}.js" %>
+    <%= render template: "#{@template_namespace}/#{@template}.js" %>
     <% if @close_modal %>$('#modal').modal('hide');<% end %>
   <% end %>
   <%= raw alert %>

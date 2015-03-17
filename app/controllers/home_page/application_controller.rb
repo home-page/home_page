@@ -40,10 +40,11 @@ class HomePage::ApplicationController < ActionController::Base
   def render_javascript_response
     @method ||= :get
     @data ||= {}
+    @template_namespace ||= controller_name
     @template ||= action_name unless @path.present?
     @template_format ||= 'html'
-    @target ||= "#bootstrap_modal"
-    @target_is_modal = @target_is_modal.nil? ? true : @target_is_modal
+    @target ||= "#modal"
+    @target_needs_modal_layout = @target_needs_modal_layout.nil? ? true : @target_needs_modal_layout
     @modal_title ||= I18n.t("#{controller_name}.#{action_name}.title")
     @close_modal ||= false
   
