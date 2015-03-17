@@ -24,6 +24,8 @@ en:
     loading: Loading ...
     close: Close
     not_available_short: n/a
+    remove_from_list_but_not_destroy_item: Remove from list (item will be not destroyed)
+    select_existing_item_or_create_new_one: Select Item or create new one
     
     attributes:
       title: Title

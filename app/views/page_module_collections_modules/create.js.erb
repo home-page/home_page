@@ -1,0 +1,8 @@
+if($("#page_module_collection_module_<%= @collection_module_id %>").length == 0) {
+  $("#page_module_collection_modules").append("<%= escape_javascript(
+    render(
+      partial: 'page_module_collections/page_module', locals: { page_module: @page_module }
+    ) 
+  ) %>");
+  $('#modal').modal('hide');
+}

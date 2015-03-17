@@ -8,7 +8,11 @@ en:
     new: 
       title: New Page Module Collection
       short_title: New Collection
-      
+    
+    show:
+      add_module: Add Module to Collection
+      add_module_short: Add Module
+        
     edit: 
       title: Edit Page Module Collection
   

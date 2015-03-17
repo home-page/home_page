@@ -17,12 +17,15 @@ class PageModule < ActiveRecord::Base
   
   serialize :data, Hash
   
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   
   validate :either_partial_path_or_content_present
   validate :valid_liquid_syntax, if: 'content.present?'
   
-  attr_accessible :title, :description, :partial_path, :content, :data, :moduleable_type, :moduleable_id, :published_from, :published_until
+  attr_accessible :title, :description, :plugin, :partial_path, :content, :data, :moduleable_type, :moduleable_id, :published_from, :published_until
+  
+  attr_accessor :collection_id
+  attr_writer :plugin
   
   extend FriendlyId
   
@@ -31,6 +34,8 @@ class PageModule < ActiveRecord::Base
   before_save :set_slug_stub
   
   def plugin
+    return @plugin if @plugin.present?
+    
     if slug_stub.present? && Setting['home_page.general.plugins'].include?("home_page_#{slug_stub}") || slug_stub == 'home'
       slug_stub      
     else
@@ -45,8 +50,7 @@ class PageModule < ActiveRecord::Base
       errors.add(
         :base,
         I18n.t(
-          'activerecord.errors.models.page_module.attributes.base.either_partial_path_or_content_must_be_present',
-          message: e.message
+          'activerecord.errors.models.page_module.attributes.base.either_partial_path_or_content_must_be_present'
         )
       )
     end

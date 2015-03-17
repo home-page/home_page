@@ -1,0 +1,10 @@
+<%= devise_error_messages! %>
+
+<%= f.input :collection_id, as: :hidden %>     
+<%= f.select :module_id, @page_modules, { include_blank: true }, { class: 'selectize_select' } %>
+
+<script type="text/javascript">
+$(function () {
+  $('.selectize_select').selectize({ create: true, sortField: 'text' });
+});
+</script>

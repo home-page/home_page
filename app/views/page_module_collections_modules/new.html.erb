@@ -1,0 +1,27 @@
+<% content_for :title do %><%= t('page_module_collections.show.add_module') %><% end %>
+
+<% content_for :modal_footer do %>
+  <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('general.close') %></button>
+  <button type="submit" class="btn btn-primary"><%= t('general.select_existing_item_or_create_new_one') %></button>
+<% end %>
+
+<%= simple_form_for(
+  @page_module_collection_module, url: page_module_collections_modules_path, wrapper: :horizontal_form,
+  method: :post, remote: request.xhr?, html: { class: 'form-horizontal', autocomplete: 'off' }
+) do |f| %>
+  <% if request.xhr? %>
+    <% content_for :modal_body do %>
+      <%= render partial: 'page_module_collections_modules/fields', locals: { f: f } %>
+    <% end %>
+   
+    <%= render partial: 'shared/layouts/modal' %>
+  <% else %>
+    <%= render partial: 'page_module_collections_modules/fields', locals: { f: f } %>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary"><%= t('general.select_existing_item_or_create_new_one') %></button>
+      </div>
+    </div>
+  <% end %>
+<% end %>
