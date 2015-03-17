@@ -20,7 +20,8 @@ class SettingsController < ApplicationController
       if @settings[var] && value.strip == ''
         Setting.destroy var
       else
-        Setting[var] = Setting.new(var: var, value: value).cast_value
+        value = Setting.new(var: var, value: value).cast_value
+        Setting[var] = value
       end
     end
     
