@@ -2,6 +2,7 @@ class PageModuleCollectionsController < ApplicationController
   respond_to :html, :js
   
   before_filter :authenticate_user!
+  before_filter :show_breadcrumbs, except: :index
   
   def index
     slug_stub = if params[:slug_stub].blank?
@@ -40,7 +41,16 @@ class PageModuleCollectionsController < ApplicationController
       @target = '.modal-content' if request.xhr?
     end
     
+    @target_needs_modal_layout = false if request.xhr?
+    
     render_or_redirect_by_request_type
+  end
+  
+  def show
+    @page_module_collection = PageModuleCollection.friendly.find(params[:id])
+    @page_modules = @page_module_collection.modules.select(
+      'page_modules.*, page_module_collections_modules.id AS collection_module_id, page_module_collections_modules.position'
+    ).order('page_module_collections_modules.position ASC')
   end
   
   def edit
@@ -62,6 +72,8 @@ class PageModuleCollectionsController < ApplicationController
       @template = :edit
       @target = '.modal-content' if request.xhr?
     end
+    
+    @target_needs_modal_layout = false if request.xhr?
     
     render_or_redirect_by_request_type
   end

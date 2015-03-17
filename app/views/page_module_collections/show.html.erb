@@ -1,0 +1,44 @@
+<% if request.xhr? %>
+  <p>
+    <%= link_to(
+      t('page_module_collections.index.short_title'), page_module_collections_path(slug_stub: @page_module_collection.slug_stub), 
+      class: 'page_module_collection_show_link', :'data-replace' => "#page_module_collections_slug_stub_#{@page_module_collection.slug_stub}"
+    ) %> &gt; <%= @page_module_collection.title %>
+  </p>
+<% else %>
+  <% content_for :title do %><%= t('activerecord.models.page_module_collection') %>: <%= @page_module_collection.title %><% end %>
+<% end %>
+
+<table class="table table-striped" style="margin-bottom:0px;">
+  <thead>
+    <tr class='<%= cycle('odd', 'even') %>'>
+      <th style="width:15px; border-bottom:1px solid #dddddd;"></td>
+      <th style="width: 75px; border-bottom:1px solid #dddddd; vertical-align:top;"><%= t('attributes.position') %></th>
+      <th style='width: 300px; border-bottom:1px solid #dddddd;'><%= t('general.attributes.title') %></th>
+      <th style='width: 300px; border-bottom:1px solid #dddddd;'><%= t('general.attributes.slug') %></th>
+      <th style='width: 150px; border-bottom:1px solid #dddddd;'><%= t('general.attributes.published') %></th>
+      <th style="border-bottom:1px solid #dddddd;"></th>
+    </tr>
+  </thead>
+</table>
+
+<ul 
+  class="nav list-striped multisortable" id="page_module_collection_modules"
+  data-url="<%= move_page_module_collection_modules_path(@page_module_collection) %>"
+>
+  <%= render partial: 'page_module_collections/page_module', collection: @page_modules %>
+</ul>
+
+<p>
+  <button 
+    type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" 
+    data-url="<%= new_page_module_collection_module_path(@page_module_collection) %>" 
+    data-title="<%= t('page_module_collections.show.add_module') %>" data-only-update-body="false"
+  >
+    <span class="glyphicon glyphicon-plus"></span> <%= t('page_module_collections.show.add_module_short') %>
+  </button>
+</p>
+
+<% content_for :document_ready do %>
+  new window.HomePage.Shared.SortableList('#page_module_collection_modules');
+<% end %>

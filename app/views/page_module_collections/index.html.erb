@@ -39,9 +39,7 @@
           <div class="tab-content">
   <% @page_module_collection_slug_stubs.each_with_index do |slug_stub, index| %>                  
             <div role="tabpanel" class="tab-pane<% if index == 0 %> active<% end %>" id="page_module_collections_slug_stub_<%= slug_stub %>">
-    <% if index == 0 %>
-              <%= render partial: 'page_module_collections/collection' %>
-    <% end %>            
+              <%= render partial: 'page_module_collections/collection' if index == 0 %>          
             </div>
   <% end %>            
           </div>
@@ -63,3 +61,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'home_page/page_module_collections/index' %>
+<% end %>

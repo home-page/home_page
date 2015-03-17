@@ -3,4 +3,6 @@ class PageModuleCollectionModule < ActiveRecord::Base
   
   belongs_to :collection, class_name: 'PageModuleCollection'
   belongs_to :module, class_name: 'PageModule'
+  
+  acts_as_list scope: :collection_id
 end

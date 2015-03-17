@@ -1,0 +1,27 @@
+<li id="page_module_collection_module_<%= @collection_module_id || page_module.collection_module_id %>" 
+    data-id="<%= @collection_module_id || page_module.collection_module_id %>" data-position="<%= @position || page_module.position %>"
+    data-sortable_selector="#page_module_collection_modules"
+>
+  <table class="table" style="margin-bottom: 0px">
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td class="list-element-striped" style="width:15px"><%= image_tag 'home_page/spinner.gif', class: 'hide sorting_spinner' %></td>
+      <td class="list-element-striped item_position" style="width:75px; text-align:right"><%= @position || page_module.position %></td>
+      <td class="list-element-striped" style="width:300px;"><%= link_to page_module.title, edit_page_module_path(page_module) %></td>
+      <td class="list-element-striped" style="width:300px;"><%= page_module.slug %></td>
+      <td class="list-element-striped" style="width:150px; text-align:center;">
+        <%= page_module.published_from.nil? ? t('general.not_available_short') : page_module.published_from.strftime('%d.%m.%Y %H:%M:%S') %>
+        <br/>
+        -
+        <br/>
+        <%= page_module.published_until.nil? ? t('general.not_available_short') : page_module.published_until.strftime('%d.%m.%Y %H:%M:%S') %>
+      </td>
+      <td class="list-element-striped">
+        <%= link_to(
+          t('general.remove_from_list_but_not_destroy_item'), page_module_collections_module_path(@collection_module_id || page_module.collection_module_id), 
+          id: "page_module_collection_module_#{@collection_module_id || page_module.collection_module_id}", method: :delete, 
+          data: { confirm: t('general.questions.are_you_sure') }, remote: true
+        ) %>
+      </td>
+    </tr>
+  </table>
+</li>

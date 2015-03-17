@@ -1,9 +1,13 @@
 <tr class="<%= cycle('odd', 'even') %>" id="page_module_collections_row_<%= page_module_collection.id %>">
   <td>
-    <%= link_to page_module_collection.title, page_module_collection_path(page_module_collection) %>
+    <%= link_to(
+      page_module_collection.title, page_module_collection_path(page_module_collection),
+      class: 'page_module_collection_show_link', 
+      :'data-replace' => "#page_module_collections_slug_stub_#{page_module_collection.slug_stub}"
+    ) %>
   </td>
   <td>
-    <%= link_to page_module_collection.slug, page_module_collection_path(page_module_collection) %>
+    <%= page_module_collection.slug %>
   </td>
   <td>
     <div class="dropdown">
