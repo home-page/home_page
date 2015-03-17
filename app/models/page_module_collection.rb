@@ -2,7 +2,7 @@ class PageModuleCollection < ActiveRecord::Base
   has_many :page_module_collection_modules, dependent: :destroy, foreign_key: 'collection_id'
   has_many :modules, class_name: 'PageModule', through: :page_module_collection_modules
   
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   
   attr_accessible :title
   
