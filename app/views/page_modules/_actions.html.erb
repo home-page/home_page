@@ -1,0 +1,26 @@
+<div class="dropdown">
+  <button 
+    class="btn btn-default dropdown-toggle" type="button" id="page_module_<%= page_module.id %>_actions" 
+    data-toggle="dropdown" aria-expanded="true">
+    <%= t('general.actions') %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="page_module_<%= page_module.id %>_actions">
+    <li role="presentation">
+      <%= link_to(
+        t('general.destroy'), page_module_path(page_module), id: "page_module_#{page_module.id}", method: :delete, 
+        data: { confirm: t('general.questions.are_you_sure') }, remote: true
+      ) %>
+    </li>
+    <li role="presentation">
+      &nbsp;&nbsp;
+      <button 
+        type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" 
+        data-url="<%= edit_page_module_path(page_module) %>" 
+        data-title="<%= t('page_modules.edit.title') %>" data-only-update-body="false"
+      >
+        <span class="glyphicon glyphicon-pencil"></span> <%= t('general.edit') %>
+      </button>
+    </li>
+  </ul>
+</div>
