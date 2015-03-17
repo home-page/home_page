@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
-  before_filter :find_resource, only: [:edit, :update, :destroy]
+  before_filter :find_resource, only: [:show, :edit, :update, :destroy]
   
   respond_to :html
   
   before_filter :authenticate_user!
+  before_filter :show_breadcrumbs, except: :index
   
   def index
     @users = User.order('name ASC').paginate(page: params[:page], per_page: 10)
+  end
+  
+  def show
   end
   
   def edit

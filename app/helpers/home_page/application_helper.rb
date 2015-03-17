@@ -2,6 +2,21 @@ module HomePage
   module ApplicationHelper
     include AutoHtml
     
+    def self.root_model_class_name_helper(resource)
+      if resource.class.superclass.name == 'ActiveRecord::Base'
+        resource.class.name
+      elsif resource.class.superclass.name == 'Object'
+        # classes like mongo db models without a specific superclass
+        resource.class.name
+      else
+        resource.class.superclass.name
+      end
+    end
+    
+    def root_model_class_name(resource)
+      ::HomePage::ApplicationHelper.root_model_class_name_helper(resource)
+    end
+    
     # Taken from https://github.com/seyhunak/twitter-bootstrap-rails
     # Modified to support html in flash message
     def bootstrap_flash_raw
@@ -56,5 +71,12 @@ module HomePage
       
       doc.to_s  
     end  
+    
+    def attribute_translation(attribute, current_resource = nil)
+      current_resource = current_resource || resource
+      t("activerecord.attributes.#{root_model_class_name(current_resource).underscore}.#{attribute}",
+        default: t("attributes.#{attribute}")
+      )
+    end
   end
 end
