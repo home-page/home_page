@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ['gawlista@gmail.com']
   s.homepage    = 'http://Home-Page.Software'
   s.summary     = 'Simple content management system for maintaining personal web pages but not usable yet.'
-  s.description = 'Simple content management system with optional modules for maintaining personal web pages with pluggable modules for special interests and API mashups but not usable yet.'
+  s.description = '#Ruby on #Rails CMS with #Crowdsourcing support changes: http://bit.ly/home-page-0-0-6'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
