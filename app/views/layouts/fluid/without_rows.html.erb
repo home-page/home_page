@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= render partial: 'layouts/shared/head' %>
+  </head>
+  <body class="<%= @body_class %>">
+    <%= render partial: 'layouts/shared/navigation' %> 
+    
+    <div class="container-fluid">
+      <%= render partial: 'layouts/shared/flash' %>
+      
+      <%= yield %>
+    </div>
+    
+    <%= render partial: 'layouts/shared/foot' %>
+  </body>
+</html>
