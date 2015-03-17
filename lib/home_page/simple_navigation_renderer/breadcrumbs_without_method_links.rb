@@ -13,8 +13,12 @@ module HomePage
       def a_tags(item_container, parent_list = [])
         item_container.items.inject([]) do |list, item|
           if item.method.blank? && item.selected?
-            list << tag_for(item) unless parent_list.join('').match(item.url.split('#').first)
-    
+            unless parent_list.join('').match(item.url.split('#').first)
+              item_options = options_for(item)
+              breadcrumb_title = nil; breadcrumb_title = item_options.delete(:breadcrumb_title)
+              list << (breadcrumb_title.present? ? link_to(breadcrumb_title, item.url, item_options) : tag_for(item))
+            end
+            
             if include_sub_navigation?(item)
               list.concat a_tags(item.sub_navigation, list.clone)
             end
