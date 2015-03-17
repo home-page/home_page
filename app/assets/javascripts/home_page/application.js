@@ -1,6 +1,10 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require moment
+//= require_tree ./lib
 //= require home_page/loader
+//= require selectize
 //= require bootstrap-datetimepicker
+//= require_tree ./shared
 //= require home_page/base

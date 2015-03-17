@@ -1,9 +1,12 @@
 /*
  *= require_self
+ *= require jquery-ui
  *= require home_page/variables
  *= require home_page/loader
  *= require home_page/bootswatch
  *= require bootstrap-datetimepicker
+ *= require selectize
+ *= require selectize.bootstrap3
  *= require home_page/pygments
  *= require home_page/socialicious
 */
