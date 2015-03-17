@@ -1,5 +1,11 @@
 ## unreleased ##
 
+## 0.0.6 (March 18, 2015) ##
+
+*   refs #56 Adds backend for managing page modules currently only addressing some pre-defined partial paths. They can be added to collections and be sorted inside them.
+*   refs #57 Adds backend for managing page module collections.
+*   refs #29 Adds backend to manage CRUD of core and plugin settings stored in database.
+
 ## 0.0.5 (March 11, 2015) ##
 
 *   #44 Sets up hosts initializer for Volontari.at.
