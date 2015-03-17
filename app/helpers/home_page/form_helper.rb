@@ -5,7 +5,7 @@ module HomePage
       label = options.delete(:label)
       
       default = Setting.defaults[var]
-      hint_value = default.is_a?(Array) || default.is_a?(Hash) ? default.to_json : default
+      hint_value = default.is_a?(Array) || default.is_a?(Hash) ? default.to_json : default.inspect
       value = @settings[var].try(:value)
       value = if value.nil?
         value
