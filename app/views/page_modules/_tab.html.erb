@@ -21,9 +21,7 @@
     <div class="tab-content">
   <% @page_module_slug_stubs.each_with_index do |slug_stub, index| %>              
       <div role="tabpanel" class="tab-pane active" id="page_modules_slug_stub_<%= slug_stub %>">
-    <% if index == 0 %>
-        <%= render partial: 'page_modules/collection' %>
-    <% end %> 
+        <%= render partial: 'page_modules/collection' if index == 0 %>
       </div>
   <% end %>            
     </div>
