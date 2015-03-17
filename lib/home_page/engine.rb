@@ -9,6 +9,7 @@ module HomePage
     config.to_prepare do
       Rails.application.config.assets.precompile += %w(
         home_page/*
+        vendors/*
       )
     end 
   end
