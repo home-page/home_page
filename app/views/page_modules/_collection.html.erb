@@ -1,5 +1,5 @@
 <% if @page_modules.none? %>
-<p><%= t('page_module_collections.index.empty_collection') %></p>
+<p><%= t('page_modules.index.empty_collection') %></p>
 <% else %>
   <table class='table table-striped'>
     <thead>
@@ -15,5 +15,5 @@
     </tbody>
   </table>
   
-  <%= will_paginate @page_module_collections, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @page_modules, renderer: BootstrapPagination::Rails %>
 <% end %>
