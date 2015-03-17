@@ -1,1 +1,9 @@
 <%= javascript_include_tag *home_page_javascripts %>
+<%= yield :javascript_includes %>
+<%= javascript_tag do %>
+  <%= yield :top_javascript %>
+  
+  $(function() {
+    <%= yield(:document_ready) %>
+  });
+<% end %>
