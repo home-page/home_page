@@ -42,17 +42,38 @@ module HomePage
       when 'page_modules'
         Proc.new do |primary, options|
           if user_signed_in?
-            primary.item :page_module_collections, I18n.t('page_modules.index.title'), page_module_collections_path do |page_module_collections|
-              page_module_collections.item :new, I18n.t('general.new'), new_page_module_collection_path
+            primary.item(
+              :page_module_collections, t('page_modules.index.title'), page_module_collections_path,
+              breadcrumb_title: t('page_module_collections.index.title')
+            ) do |page_module_collections|
+              page_module_collections.item :new, t('general.new'), new_page_module_collection_path
               
               unless (@page_module_collection.new_record? rescue true)
-                page_module_collections.item :destroy, I18n.t('general.destroy'), page_module_collection_path(@page_module_collection), method: :delete, confirm: I18n.t('general.questions.are_you_sure')
-                page_module_collections.item :new_module, I18n.t('page_modules.new.short_title'), new_page_module_collection_module_path(@page_module_collection)
-                
-                page_module_collections.item :modules, I18n.t('page_modules.index.short_title'), page_module_collection_modules_path do |page_modules|
-                  unless (@page_module.new_record? rescue true)
-                    page_modules.item :edit, I18n.t('general.edit'), edit_page_module_path(@page_module) do |page_module|
-                      page_module.item :destroy, I18n.t('general.destroy'), page_module_path(@page_module), method: :delete, confirm: I18n.t('general.questions.are_you_sure')
+                page_module_collections.item(
+                  :show, @page_module_collection.title, page_module_collection_path(@page_module_collection)
+                ) do |page_module_collection|
+                  page_module_collection.item(
+                    :edit, t('general.edit'), edit_page_module_collection_path(@page_module_collection)
+                  )
+                  page_module_collection.item(
+                    :destroy, t('general.destroy'), page_module_collection_path(@page_module_collection), method: :delete, 
+                    confirm: t('general.questions.are_you_sure')
+                  )
+                  
+                  page_module_collection.item(
+                    :new_module, t('page_modules.new.short_title'), new_page_module_collection_module_path(@page_module_collection)
+                  )
+                  
+                  page_module_collection.item(
+                    :modules, t('page_modules.index.short_title'), page_module_collection_modules_path(@page_module_collection) 
+                  ) do |page_modules|
+                    unless (@page_module.new_record? rescue true)
+                      page_modules.item :edit, t('general.edit'), edit_page_module_path(@page_module) do |page_module|
+                        page_module.item(
+                          :destroy, t('general.destroy'), page_module_path(@page_module), method: :delete, 
+                          confirm: t('general.questions.are_you_sure')
+                        )
+                      end
                     end
                   end
                 end
@@ -63,10 +84,14 @@ module HomePage
       when 'users'
         Proc.new do |primary, options|
           if user_signed_in?
-            primary.item :users, I18n.t('users.index.title'), users_path do |users|
-              unless (@user.new_record? rescue true) || current_user.try(:id) == @user.id
-                if options[:after_resource_has_many]
-                  instance_exec users, {}, &options[:after_resource_has_many]
+            primary.item :users, t('users.index.title'), users_path do |users|
+              unless (@user.new_record? rescue true)
+                users.item :show, @user.name, user_path(@user) do |user|
+                  user.item :edit, t('general.edit'), edit_user_path(@user)
+                  
+                  if options[:after_resource_has_many]
+                    instance_exec user, {}, &options[:after_resource_has_many]
+                  end
                 end
               end
             end
@@ -74,16 +99,16 @@ module HomePage
         end
       when 'settings'
         Proc.new do |primary, options|
-          primary.item :settings, I18n.t('settings.index.title'), settings_path if user_signed_in?
+          primary.item :settings, t('settings.index.title'), settings_path if user_signed_in?
         end  
       when 'authentication'
         Proc.new do |primary, options|
           if user_signed_in?
-            primary.item :sign_out, I18n.t('authentication.sign_out'), destroy_user_session_path, method: :delete
+            primary.item :sign_out, t('authentication.sign_out'), destroy_user_session_path, method: :delete
           else
-            primary.item :authentication, I18n.t('authentication.title'), new_user_session_path do |authentication|
-              authentication.item :sign_in, I18n.t('authentication.sign_in'), new_user_session_path
-              authentication.item :sign_up, I18n.t('authentication.sign_up'), new_user_registration_path
+            primary.item :authentication, t('authentication.title'), new_user_session_path do |authentication|
+              authentication.item :sign_in, t('authentication.sign_in'), new_user_session_path
+              authentication.item :sign_up, t('authentication.sign_up'), new_user_registration_path
             end
           end
         end
