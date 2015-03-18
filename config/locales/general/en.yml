@@ -67,7 +67,8 @@ en:
           title: Volontari.at
       
       request_failed: "%{provider} request failed!"
-              
+      settings_missing: Please update the settings for %{provider} API to show appropriate data here!          
+           
   pages:
     privacy_policy:
       title: Privacy Police
