@@ -27,7 +27,8 @@ en:
     remove_from_list_but_not_destroy_item: Remove from list (item will be not destroyed)
     select_existing_item_or_create_new_one: Select Item or create new one
     more: More
-    
+    liked: Liked %{subject}
+      
     attributes:
       title: Title
       description: Description
