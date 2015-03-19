@@ -51,7 +51,7 @@ module HomePage
     
           redcarpet(
             renderer: Redcarpet::Render::XHTML.new(
-              no_images: true, no_styles: true, hard_wrap: true, with_toc_data: true
+              no_images: false, no_styles: true, hard_wrap: true, with_toc_data: true
             ),
             markdown_options: { no_intra_emphasis: true, autolink: true, fenced_code_blocks: true }
           )
