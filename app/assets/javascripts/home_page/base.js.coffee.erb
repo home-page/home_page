@@ -13,6 +13,9 @@ $(document).ready ->
     
   $(document.body).on 'show.bs.modal', '#modal', (event) ->
     button = $(event.relatedTarget)
+    
+    return if button.data('url') == undefined
+    
     url = button.data('url')
     modal = $(this)
     modal.find('.modal-title').text button.data('title')
