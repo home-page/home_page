@@ -21,6 +21,7 @@ en:
         general:
           navigation:
             items: Navigation Items
-          
+          footer_navigation:
+            items: Footer Navigation Items
           enabled_apis: Enabled APIs
           partial_paths: Partial Paths

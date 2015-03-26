@@ -25,5 +25,19 @@ module HomePage
       
       result && result.scan('<a').length >= links_count ? result : ''
     end
+    
+    def footer_navigation
+      links = []
+      page_slugs = Setting['home_page.general.footer_navigation.items']
+      pages = page_slugs.any? ? Page.where(slug: page_slugs) : []
+      
+      pages.each do |page|
+        text = page.title
+        path = page_path(page)
+        links << (current_page?(path) ? text : link_to(text, path))
+      end
+      
+      raw links.join(' | ')
+    end
   end
 end

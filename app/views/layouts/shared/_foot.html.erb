@@ -1,3 +1,22 @@
+<% unless @hide_footer %>
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">  
+<% if Setting['home_page.general.footer_navigation.items'].length > 0 %>      
+      <span>
+        <%= footer_navigation %> 
+      </span>
+      <br/>
+      <br/>
+<% end %>      
+      <span>
+        <%= raw t('general.powered_by_home_page_software', link: link_to('Home-Page.Software', 'http://Home-Page.Software')) %>
+      </span>
+    </p>
+  </div>
+</footer>
+<% end %>
+
 <%= javascript_include_tag *home_page_javascripts %>
 <%= yield :javascript_includes %>
 <%= javascript_tag do %>
