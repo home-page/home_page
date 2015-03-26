@@ -1,0 +1,35 @@
+<tr class="<%= cycle('odd', 'even') %>" id="pages_row_<%= page.id %>">
+  <td>
+    <%= link_to page.title, page_path(page) %>
+  </td>
+  <td>
+    <%= page.slug %>
+  </td>
+  <td>
+    <div class="dropdown">
+      <button 
+        class="btn btn-default dropdown-toggle" type="button" id="page_<%= page.id %>_actions" 
+        data-toggle="dropdown" aria-expanded="true">
+        <%= t('general.actions') %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="page_<%= page.id %>_actions">
+        <li role="presentation">
+          <%= link_to(
+            t('general.destroy'), page_path(page), 
+            id: "page_#{page.id}", method: :delete, data: { confirm: t('general.questions.are_you_sure') }, remote: true
+          ) %>
+        </li>
+        <li role="presentation">
+          &nbsp;&nbsp;
+          <button 
+            type="button" class="btn btn-default" data-toggle="modal" data-target="#modal" 
+            data-url="<%= edit_page_path(page) %>" data-title="<%= t('pages.edit.title') %>" data-only-update-body="false"
+          >
+            <span class="glyphicon glyphicon-pencil"></span> <%= t('general.edit') %>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>

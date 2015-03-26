@@ -28,6 +28,7 @@ require 'rails-settings-cached'
 require 'liquid'
 require 'selectize-rails'
 require 'acts_as_list'
+require 'redcloth'
 
 require 'home_page/api_provider_host'
 require 'home_page/navigation'

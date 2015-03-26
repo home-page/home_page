@@ -1,0 +1,18 @@
+<% if @pages.none? %>
+<p><%= t('pages.index.empty_collection') %></p>
+<% else %>
+  <table class='table table-striped'>
+    <thead>
+      <tr class='<%= cycle('odd', 'even') %>'>
+        <th style='width: 200px'><%= t('general.attributes.title') %></th>
+        <th style='width: 200px'><%= t('general.attributes.slug') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'pages/page', collection: @pages %>
+    </tbody>
+  </table>
+  
+  <%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
+<% end %>

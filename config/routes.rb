@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     sessions: 'devise_extensions/sessions' 
   }
   
+  resources :pages
+  
   resources :page_module_collections do
     resources :modules, controller: 'page_modules', only: [:index, :new] do
       collection do

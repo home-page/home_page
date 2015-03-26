@@ -27,7 +27,7 @@ module HomePage
       Proc.new do |navigation|
         navigation.items do |primary, options|
           primary.dom_class = 'nav navbar-nav'
-          
+
           Setting['home_page.general.navigation.items'].each do |item|
             klass = "HomePage#{item.is_a?(Array) ? item.first.classify : ''}::Navigation"
             item = item.is_a?(Array) ? item.last : item
@@ -39,40 +39,58 @@ module HomePage
     
     def self.menu_code(resource)
       case resource
-      when 'page_modules'
+      when 'pages', 'page_modules'
         Proc.new do |primary, options|
           if user_signed_in?
-            primary.item(
-              :page_module_collections, t('page_modules.index.title'), page_module_collections_path,
-              breadcrumb_title: t('page_module_collections.index.title')
-            ) do |page_module_collections|
-              page_module_collections.item :new, t('general.new'), new_page_module_collection_path
+            primary.item :pages, t('pages.index.title'), pages_path do |pages|
+              pages.item :new, t('general.new'), new_page_path
               
-              unless (@page_module_collection.new_record? rescue true)
-                page_module_collections.item(
-                  :show, @page_module_collection.title, page_module_collection_path(@page_module_collection)
-                ) do |page_module_collection|
-                  page_module_collection.item(
-                    :edit, t('general.edit'), edit_page_module_collection_path(@page_module_collection)
+              unless (@page.new_record? rescue true)
+                pages.item(
+                  :show, @page.title, page_path(@page)
+                ) do |page|
+                  page.item(
+                    :edit, t('general.edit'), edit_page_path(@page)
                   )
-                  page_module_collection.item(
-                    :destroy, t('general.destroy'), page_module_collection_path(@page_module_collection), method: :delete, 
+                  page.item(
+                    :destroy, t('general.destroy'), page_path(@page), method: :delete, 
                     confirm: t('general.questions.are_you_sure')
                   )
-                  
-                  page_module_collection.item(
-                    :new_module, t('page_modules.new.short_title'), new_page_module_collection_module_path(@page_module_collection)
-                  )
-                  
-                  page_module_collection.item(
-                    :modules, t('page_modules.index.short_title'), page_module_collection_modules_path(@page_module_collection) 
-                  ) do |page_modules|
-                    unless (@page_module.new_record? rescue true)
-                      page_modules.item :edit, t('general.edit'), edit_page_module_path(@page_module) do |page_module|
-                        page_module.item(
-                          :destroy, t('general.destroy'), page_module_path(@page_module), method: :delete, 
-                          confirm: t('general.questions.are_you_sure')
-                        )
+                end
+              end
+              
+              pages.item(
+                :page_module_collections, t('page_module_collections.index.medium_title'), page_module_collections_path,
+                breadcrumb_title: t('page_module_collections.index.short_title')
+              ) do |page_module_collections|
+                page_module_collections.item :new, t('general.new'), new_page_module_collection_path
+                
+                unless (@page_module_collection.new_record? rescue true)
+                  page_module_collections.item(
+                    :show, @page_module_collection.title, page_module_collection_path(@page_module_collection)
+                  ) do |page_module_collection|
+                    page_module_collection.item(
+                      :edit, t('general.edit'), edit_page_module_collection_path(@page_module_collection)
+                    )
+                    page_module_collection.item(
+                      :destroy, t('general.destroy'), page_module_collection_path(@page_module_collection), method: :delete, 
+                      confirm: t('general.questions.are_you_sure')
+                    )
+                    
+                    page_module_collection.item(
+                      :new_module, t('page_modules.new.short_title'), new_page_module_collection_module_path(@page_module_collection)
+                    )
+                    
+                    page_module_collection.item(
+                      :modules, t('page_modules.index.short_title'), page_module_collection_modules_path(@page_module_collection) 
+                    ) do |page_modules|
+                      unless (@page_module.new_record? rescue true)
+                        page_modules.item :edit, t('general.edit'), edit_page_module_path(@page_module) do |page_module|
+                          page_module.item(
+                            :destroy, t('general.destroy'), page_module_path(@page_module), method: :delete, 
+                            confirm: t('general.questions.are_you_sure')
+                          )
+                        end
                       end
                     end
                   end

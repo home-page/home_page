@@ -47,7 +47,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap', '~> 1.0.1'
   s.add_dependency 'turbolinks', '~> 2.5.3'
   s.add_dependency 'liquid', '~> 3.0.1'
-    
+  s.add_dependency 'RedCloth', '~> 4.2.9'
+     
   # CSS & JavaScript
   s.add_dependency 'twitter-bootswatch-rails', '~> 3.3.2.0'
   s.add_dependency 'twitter-bootswatch-rails-fontawesome', '~> 4.3.0.0'

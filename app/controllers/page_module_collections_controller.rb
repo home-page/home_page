@@ -5,21 +5,11 @@ class PageModuleCollectionsController < ApplicationController
   before_filter :show_breadcrumbs, except: :index
   
   def index
-    slug_stub = if params[:slug_stub].blank?
-      @page_module_collection_slug_stubs = PageModuleCollection.pluck(:slug_stub).uniq.sort
-      @page_module_collection_slug_stubs.first
-    else
-      params[:slug_stub]
-    end
+    redirect_to pages_path if params[:slug_stub].blank?
     
-    @page_module_collections = PageModuleCollection.where(slug_stub: slug_stub).paginate(page: params[:page], per_page: 10)
+    @page_module_collections = PageModuleCollection.where(slug_stub: params[:slug_stub]).paginate(page: params[:page], per_page: 10)
     
-    if params[:slug_stub].blank?
-      @page_module_slug_stubs = PageModule.pluck(:slug_stub).uniq.sort 
-      @page_modules = PageModule.where(slug_stub: @page_module_slug_stubs.first).paginate(page: params[:module_page], per_page: 10)
-    end
-    
-    render partial: 'page_module_collections/collection', layout: false if params[:slug_stub].present?
+    render partial: 'page_module_collections/collection', layout: false
   end
   
   def new
@@ -30,10 +20,10 @@ class PageModuleCollectionsController < ApplicationController
     @page_module_collection = PageModuleCollection.create(params[:page_module_collection])
     
     if @page_module_collection.persisted?
-      @path = page_module_collections_path 
+      @path = page_module_collections_path(slug_stub: @page_module_collection.slug_stub) 
       
       if request.xhr?
-        @target = '#page'
+        @target = "#page_module_collections_slug_stub_#{@page_module_collection.slug_stub}"
         @close_modal = true
       end
     else

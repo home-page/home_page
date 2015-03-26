@@ -2,6 +2,7 @@ en:
   page_module_collections:
     index:
       title: Page Module Collections
+      medium_title: Module Collections
       short_title: Collections
       empty_collection: No page module collections available.
       
