@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '~> 4.2.0'
+  s.add_dependency 'rails', '~> 4.2.1'
   
   # rails 3
   s.add_dependency 'protected_attributes', '~> 1.0.5 '
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.1.0'
   s.add_dependency 'simple-navigation', '~> 3.14.0'  
   s.add_dependency 'simple-navigation-bootstrap', '~> 1.0.0'
-  s.add_dependency 'redcarpet', '~> 3.2.2'
+  s.add_dependency 'redcarpet', '~> 3.2.3'
   s.add_dependency 'albino', '~> 1.3.3'  
   s.add_dependency 'auto_html', '~> 1.6.4'
   s.add_dependency 'will_paginate', '~> 3.0.7'
